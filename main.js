@@ -29,8 +29,6 @@ TODO
 *  - Refresh page with new grid. Slider should default at new value and not 16 like when the app loads up 
 
 
-
-
 */
 
 function header() {
