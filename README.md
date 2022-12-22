@@ -2,7 +2,7 @@
 
 This is a web-based Etch-A-Sketch Odin Project made in HTML/Javascript.
 
-Live Preview Link:
+Live Preview Link: https://srgn8.github.io/odin-etch-a-sketch/
 
 Instructions:
 
