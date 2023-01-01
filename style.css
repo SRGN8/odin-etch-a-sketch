@@ -1,21 +1,95 @@
 body {
   background-color: rgb(214, 210, 189);
+  margin: 0 0 0 0;
 }
 
-.grid {
+.header {
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgb(160, 46, 1);
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(160, 46, 1);
+  border: 10px solid rgb(160, 46, 1);
+  height: 40vw;
+  width: 12vw;
+  margin: 10px;
+  align-items: center;
+  border-radius: 1%;
+}
+
+input[type="color"] {
+  display: none;
+}
+
+#colorBtn {
+  height: 10vw;
+  width: 10vw;
+  background-color: black;
+  /* border: none; */
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#colorText,
+#rangeValue {
+  margin: 8px;
+  width: 9vw;
+  text-align: center;
+  font-size: 0.85vw;
+}
+
+#rangeValue {
+  color: white;
+}
+
+#clearBtn,
+#newGrid {
+  margin: 4px;
+  width: 10vw;
+  height: 3vw;
+  font-size: 0.85vw;
+}
+
+#sliderRange,
+#gSlider {
+  width: 10vw;
+  text-align: center;
+}
+
+/* .grid {
   display: grid;
   grid-template-rows: repeat(16, 1fr);
   grid-template-columns: repeat(16, 1fr);
   height: 40vw;
   width: 40vw;
-  border: 5px solid black;
-}
+  border: 10px solid rgb(160, 46, 1);
+  border-radius: 0.5%;
+} */
 
-#cell {
-  background-color: white;
+.cell {
   border: 1px solid rgba(128, 128, 128, 0.089);
+  background-color: white;
 }
 
-#cell:hover {
-  background-color: rgb(219, 188, 9);
+.cell:hover {
+  background-color: rgb(2, 19, 255);
+  opacity: 0.15;
 }
