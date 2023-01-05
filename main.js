@@ -1,6 +1,7 @@
 let cell_count = 16; // GRID CELL COUNT
 let visible_cell_count = 16; // Temporary Value for listener
 let cellColor = "#000000";
+let eraser_status = false;
 
 // MOUSE BUTTON CHECKS
 let mouseDown = false;
@@ -63,10 +64,24 @@ function controls() {
   contPanel.appendChild(colorText);
   contPanel.appendChild(colorData);
 
+  // ERASER BUTTON
+  const eraseBtn = document.createElement("button");
+  eraseBtn.id = "eraseBtn";
+  const eBtn_text = document.createTextNode("ERASER");
+  eraseBtn.addEventListener("click", eraserEvent);
+  const eBtnStatus = document.createElement("input");
+  eBtnStatus.type = "text";
+  eBtnStatus.value = "ERASER: OFF";
+  eBtnStatus.id = "eBtnStatus";
+  eBtnStatus.disabled = "true";
+  eraseBtn.appendChild(eBtn_text);
+  contPanel.appendChild(eraseBtn);
+  contPanel.appendChild(eBtnStatus);
+
   // CLEAR BUTTON
   const clearBtn = document.createElement("button");
   clearBtn.id = "clearBtn";
-  const cBtn_text = document.createTextNode("CLEAR");
+  const cBtn_text = document.createTextNode("CLEAR GRID");
   clearBtn.addEventListener("click", clearGrid);
   clearBtn.appendChild(cBtn_text);
   contPanel.appendChild(clearBtn);
@@ -105,6 +120,18 @@ function controls() {
   gSlider.appendChild(rangeValue);
 
   // EVENT LISTENERS
+  // ERASER BUTTON EVENT
+  function eraserEvent() {
+    if (!eraser_status) {
+      eraser_status = true;
+      document.getElementById(`eBtnStatus`).value = `ERASER: ON`;
+      return;
+    }
+
+    eraser_status = false;
+    document.getElementById(`eBtnStatus`).value = `ERASER: OFF`;
+  }
+
   // RANGE SLIDER LISTENER
   function sliderEvent() {
     visible_cell_count = rangeSelector.value;
@@ -123,9 +150,14 @@ function controls() {
 
   // CLEAR GRID EVENT
   function clearGrid() {
-    const wipeGrid = document.getElementsByClassName("grid")[0];
-    contSelector.removeChild(wipeGrid);
-    makeGrid();
+    let cells = document.getElementsByClassName("cell");
+    for (let i = 0; i <= cells.length; i++) {
+      try {
+        cells[i].removeAttribute("style");
+      } catch (e) {
+        return;
+      }
+    }
   }
 
   // COLOR WHEEL EVENT
@@ -145,6 +177,12 @@ function controls() {
 // COLOR CELL EVENT
 function colorCellEvent(cell) {
   if (cell.type === "mouseover" && !mouseDown) return;
+
+  if (eraser_status) {
+    this.style.removeProperty("background-color");
+    console.log("color");
+    return;
+  }
 
   this.style.backgroundColor = cellColor;
 }
@@ -168,6 +206,7 @@ function makeGrid() {
   for (let cell = 1; cell <= cell_count * cell_count; cell++) {
     const pixel = document.createElement("div");
     pixel.classList.add("cell");
+    pixel.setAttribute(`draggable`, false);
     pixel.addEventListener("mousedown", colorCellEvent);
     pixel.addEventListener("mouseover", colorCellEvent);
     grid.appendChild(pixel);

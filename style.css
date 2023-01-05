@@ -3,6 +3,14 @@ body {
   margin: 0 0 0 0;
 }
 
+div {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 .header {
   display: flex;
   width: 100%;
@@ -48,6 +56,7 @@ input[type="color"] {
   cursor: pointer;
 }
 
+#eBtnStatus,
 #colorText,
 #rangeValue {
   margin: 8px;
@@ -60,6 +69,7 @@ input[type="color"] {
   color: white;
 }
 
+#eraseBtn,
 #clearBtn,
 #newGrid {
   margin: 4px;
