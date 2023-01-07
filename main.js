@@ -1,5 +1,5 @@
 let cell_count = 16; // GRID CELL COUNT
-let visible_cell_count = 16; // Temporary Value for the `New Grid Event` located in the `controls fucntion`.
+let visible_cell_count = 16; // Temporary Value for the `New Grid Event` located in the `controls function`.
 let cellColor = "#000000";
 let eraser_status = false;
 let rainbow_color = false;
