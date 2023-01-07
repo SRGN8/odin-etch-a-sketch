@@ -1,6 +1,7 @@
 body {
   background-color: rgb(214, 210, 189);
   margin: 0 0 0 0;
+  font: sans-serif;
 }
 
 div {
@@ -56,27 +57,63 @@ input[type="color"] {
   cursor: pointer;
 }
 
-#eBtnStatus,
-#colorText,
-#rangeValue {
+#colorText {
   margin: 8px;
   width: 9vw;
   text-align: center;
   font-size: 0.85vw;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 15px;
 }
 
-#rangeValue {
-  color: white;
-}
-
-#eraseBtn,
-#clearBtn,
-#newGrid {
-  margin: 4px;
+.rainbowBtn,
+.eraseBtn,
+.clearBtn,
+.newGrid {
+  margin: 10px;
   width: 10vw;
   height: 3vw;
   font-size: 0.85vw;
+  font-weight: bold;
+  color: rgb(160, 46, 1);
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
 }
+
+.rainbowBtn:hover,
+.eraseBtn:hover,
+.clearBtn:hover,
+.newGrid:hover {
+  background-color: rgb(228, 186, 168);
+}
+
+.clickedBtn,
+.clearBtn:focus,
+.newGrid:focus {
+  margin: 10px;
+  width: 10vw;
+  height: 3vw;
+  font-size: 0.85vw;
+  font-weight: bold;
+  color: #fff;
+  border: 4px solid #fff;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: rgb(160, 46, 1);
+  box-shadow: 0px 0px 0px 1px #fff;
+  animation: anim-shadow 0.3s forwards;
+  transition: 0.3s;
+}
+@keyframes anim-shadow {
+  100% {
+    box-shadow: 0px 0px 50px 20px rgb(128, 128, 128, 0);
+  }
+}
+/********/
 
 #sliderRange,
 #gSlider {
@@ -84,15 +121,11 @@ input[type="color"] {
   text-align: center;
 }
 
-/* .grid {
-  display: grid;
-  grid-template-rows: repeat(16, 1fr);
-  grid-template-columns: repeat(16, 1fr);
-  height: 40vw;
-  width: 40vw;
-  border: 10px solid rgb(160, 46, 1);
-  border-radius: 0.5%;
-} */
+#rangeValue {
+  color: white;
+  font-size: 1.2vw;
+  font-weight: bold;
+}
 
 .cell {
   border: 1px solid rgba(128, 128, 128, 0.089);

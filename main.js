@@ -2,6 +2,7 @@ let cell_count = 16; // GRID CELL COUNT
 let visible_cell_count = 16; // Temporary Value for listener
 let cellColor = "#000000";
 let eraser_status = false;
+let rainbow_color = false;
 
 // MOUSE BUTTON CHECKS
 let mouseDown = false;
@@ -18,13 +19,6 @@ const container = document.createElement("div");
 container.id = "container";
 body.appendChild(container);
 const contSelector = document.getElementById("container");
-
-/*
-
-TODO
-- Rainbow colors mode???
-
-*/
 
 function header() {
   const header = document.createElement("h1");
@@ -64,23 +58,27 @@ function controls() {
   contPanel.appendChild(colorText);
   contPanel.appendChild(colorData);
 
+  // RAINBOW BUTTON
+  const rainbowBtn = document.createElement("button");
+  rainbowBtn.classList.add("rainbowBtn");
+  const rBtn_text = document.createTextNode("RAINBOW COLOR MODE");
+  rainbowBtn.addEventListener("click", clickBtnEvent);
+  rainbowBtn.addEventListener("click", rainbowColorEvent);
+  rainbowBtn.appendChild(rBtn_text);
+  contPanel.appendChild(rainbowBtn);
+
   // ERASER BUTTON
   const eraseBtn = document.createElement("button");
-  eraseBtn.id = "eraseBtn";
+  eraseBtn.classList.add("eraseBtn");
   const eBtn_text = document.createTextNode("ERASER");
   eraseBtn.addEventListener("click", eraserEvent);
-  const eBtnStatus = document.createElement("input");
-  eBtnStatus.type = "text";
-  eBtnStatus.value = "ERASER: OFF";
-  eBtnStatus.id = "eBtnStatus";
-  eBtnStatus.disabled = "true";
+  eraseBtn.addEventListener("click", clickBtnEvent);
   eraseBtn.appendChild(eBtn_text);
   contPanel.appendChild(eraseBtn);
-  contPanel.appendChild(eBtnStatus);
 
   // CLEAR BUTTON
   const clearBtn = document.createElement("button");
-  clearBtn.id = "clearBtn";
+  clearBtn.classList.add("clearBtn");
   const cBtn_text = document.createTextNode("CLEAR GRID");
   clearBtn.addEventListener("click", clearGrid);
   clearBtn.appendChild(cBtn_text);
@@ -88,7 +86,7 @@ function controls() {
 
   // NEW GRID BUTTON
   const newGridBtn = document.createElement("button");
-  newGridBtn.id = "newGrid";
+  newGridBtn.classList.add("newGrid");
   const ngBtn_text = document.createTextNode("CREATE NEW GRID");
   newGridBtn.addEventListener("click", newGridEvent);
   newGridBtn.appendChild(ngBtn_text);
@@ -120,16 +118,34 @@ function controls() {
   gSlider.appendChild(rangeValue);
 
   // EVENT LISTENERS
+  // CLICKED BUTTON EVENT
+  function clickBtnEvent() {
+    if (this.classList[1] === "clickedBtn") {
+      this.classList.remove("clickedBtn");
+      return;
+    }
+
+    this.classList.add("clickedBtn");
+  }
+
+  // RAINBOW COLOR BUTTON EVENT
+  function rainbowColorEvent() {
+    if (!rainbow_color) {
+      rainbow_color = true;
+      return;
+    }
+
+    rainbow_color = false;
+  }
+
   // ERASER BUTTON EVENT
   function eraserEvent() {
     if (!eraser_status) {
       eraser_status = true;
-      document.getElementById(`eBtnStatus`).value = `ERASER: ON`;
       return;
     }
 
     eraser_status = false;
-    document.getElementById(`eBtnStatus`).value = `ERASER: OFF`;
   }
 
   // RANGE SLIDER LISTENER
@@ -137,7 +153,6 @@ function controls() {
     visible_cell_count = rangeSelector.value;
     rangeSelector.value = visible_cell_count;
     rangeValue.innerHTML = `GRID PIXEL SIZE: ${visible_cell_count}`;
-    // console.log(pixelCount.value);
   }
   // NEW GRID EVENT
   function newGridEvent() {
@@ -145,7 +160,6 @@ function controls() {
     contSelector.removeChild(currentGrid);
     cell_count = visible_cell_count;
     makeGrid();
-    // console.log(cell_count);
   }
 
   // CLEAR GRID EVENT
@@ -169,7 +183,6 @@ function controls() {
     cellColor = createColorW.value;
     setColorBtn.style.backgroundColor = cellColor;
     setColorText.value = createColorW.value;
-    console.log(setColorText);
     createColorW.click();
   }
 }
@@ -180,7 +193,14 @@ function colorCellEvent(cell) {
 
   if (eraser_status) {
     this.style.removeProperty("background-color");
-    console.log("color");
+    return;
+  }
+
+  if (rainbow_color) {
+    const randR = Math.floor(Math.random() * 256);
+    const randG = Math.floor(Math.random() * 256);
+    const randB = Math.floor(Math.random() * 256);
+    this.style.backgroundColor = `rgb(${randR}, ${randG}, ${randB})`;
     return;
   }
 
@@ -211,8 +231,6 @@ function makeGrid() {
     pixel.addEventListener("mouseover", colorCellEvent);
     grid.appendChild(pixel);
   }
-
-  // console.log(cell.length);
 }
 
 function app() {

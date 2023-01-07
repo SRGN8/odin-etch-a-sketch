@@ -1,40 +1,33 @@
 # odin-etch-a-sketch
 
-This is a web-based Etch-A-Sketch Odin Project made in HTML/Javascript.
+This is a web-based Etch-A-Sketch Odin Project made in HTML/Javascript. Current Version = `v1.2`
 
 Live Preview Link: https://srgn8.github.io/odin-etch-a-sketch/
 
-Instructions:
+# HOW TO USE
 
-1. Create a webpage with a 16x16 grid of square divs.
+- First, click the black circle to change the color you want to paint in, or leave it at the preset black if you wish.
+- You may also change the Grid Size using the button and slider below.
+- Now you are ready to paint! Press/Hold Left Click inside the the grid to start painting! Read on for more details of features.
 
-- Create the divs using JavaScript. Don’t try making them by hand with copy and pasting in your HTML file!
+# ===== FEATURES ======
 
-- It’s best to put your grid squares inside another “container” div (which can go directly in your HTML).
+# COLOR PICKER
 
-- There are several different ways to make the divs appear as a grid (versus just one on each line). Feel free to use any or play with each of them:
+- Click the `Black Cirle` to change the RGB Value you want to paint pixels with. The Hex Code will be updated in the field below the Color Picker.
 
-float/clear
-inline-block
-flexbox
-CSS Grid
+# RAINBOW COLOR MODE
 
-- Be careful with borders and margins, as they can adjust the size of the squares!
+- Toggle the `Rainbow Color Mode` button to paint pixels in Rainbow Color Mode!
 
-2. Set up a “hover” effect so that the grid divs change color when your mouse passes over them, leaving a (pixelated) trail through your grid like a pen would.
+# ERASER BUTTON
 
-- Hint: “Hovering” is what happens when your mouse enters a div and ends when your mouse leaves it. You can set up event listeners for either of those events as a starting point.
+- Toggle this button if you want to remove colors from pixels.
 
-3. Add a button to the top of the screen that will send the user a popup asking for the number of squares per side for the new grid. Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before (e.g. 960px wide) so that you’ve got a new sketch pad. Tip: Set the limit for the user input to a maximum of 100. A larger number of squares results in more computer resources being used, potentially causing delays, freezing, or crashing that we want to prevent.
+# CLEAR GRID BUTTON
 
-- Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
+- Click this button if you want to clear all pixels at once.
 
-- Also check out prompts.
+# CREATE NEW GRID BUTTON + SLIDER
 
-- You should be able to enter 64 and have a brand new 64x64 grid pop up without changing the total amount of pixels used.
-
-4. Push your project to GitHub!
-
-5. Extra Credit
-
-Instead of just changing the color of a square from black to white (for example), have each pass through with the mouse change it to a completely random RGB value. Then try having each pass just add another 10% of black to it so that only after 10 passes is the square completely black.
+- When this button is clicked, a new painting area will be generated according to the `current value of the slider's pixel size` below this button. The Slider + Value is preset to `16x16 Pixels` for the painting area, but can be adjusted to make the painting area bigger or smaller. The current minimum pixel size is `2x2 pixels`, and the maximum is `100x 100 pixels`.
