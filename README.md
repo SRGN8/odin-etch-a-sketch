@@ -1,6 +1,6 @@
 # odin-etch-a-sketch
 
-This is a web-based Etch-A-Sketch Odin Project made in HTML/Javascript. Current Version = `v1.2`
+This is a web-based Etch-A-Sketch Odin Project made with HTML/CSS/Javascript. Current Version = `v1.2`
 
 Live Preview Link: https://srgn8.github.io/odin-etch-a-sketch/
 
